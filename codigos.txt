@@ -1,0 +1,326 @@
+#include "mbed.h"
+
+DigitalOut a(PC_3);
+DigitalOut b(PC_0);
+DigitalOut c(PC_1);
+DigitalOut d(PB_0);
+DigitalOut e(PA_4);
+DigitalOut f(PA_1);
+DigitalOut g(PA_0);
+DigitalOut n(D5);
+DigitalOut p1(PA_13);
+DigitalOut p2(PA_14);
+DigitalIn n1(D2);
+DigitalIn n2(D3);
+DigitalIn n3(D4);
+DigitalIn n4(D5);
+
+int x,y,a1,a2,a3,a4,nt;
+
+void numero(int gg)
+{
+    switch(gg) {
+        case(0): {
+            a=b=c=d=e=f=1;
+            g=0;
+            break;
+        }
+        case(1): {
+            b=c=1;
+            a=d=e=g=f=0;
+            break;
+        }
+        case(2): {
+            a=b=g=e=d=1;
+            c=f=0;
+            break;
+        }
+        case(3): {
+            a=b=c=d=g=1;
+            e=f=0;
+            break;
+        }
+        case(4): {
+            b=c=f=g=1;
+            a=d=e=0;
+            break;
+        }
+        case(5): {
+            a=f=g=c=d=1;
+            b=e=0;
+            break;
+        }
+        case(6): {
+            a=c=d=e=f=g=1;
+            b=0;
+            break;
+        }
+        case(7): {
+            a=b=c=1;
+            d=e=g=f=0;
+            break;
+        }
+        case(8): {
+            a=b=c=d=e=f=g=1;
+            break;
+        }
+        case(9): {
+            a=b=c=d=f=g=1;
+            e=0;
+            break;
+        }
+    }
+    n=0;
+}
+void leer()
+{
+    if(n1==1)
+    {
+        a1=1;
+    }
+    else
+    {
+        a1=0;
+    }
+    if(n2==1)
+    {
+        a2=2;
+    }
+    else
+    {
+        a2=0;
+    }
+    if(n3==1)
+    {
+        a3=4;
+    }
+    else
+    {
+        a3=0;
+    }
+    if(n4==1)
+    {
+        a4=8;
+    }
+    else
+    {
+        a4=0;
+    }
+    nt=a1+a2+a3+a4;
+}
+int main()
+{
+    x=y=0;
+    while (1) {
+        numero(x);
+        wait_ms(10);
+        p1=1;
+        p2=0;
+        numero(y);
+        wait_ms(10);
+        p1=0;
+        p2=1;
+        leer();
+        y=nt/10;
+        x=nt-(y*10);
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+#include "mbed.h"
+
+DigitalIn n1(D2);
+DigitalIn n2(D3);
+DigitalIn n3(D4);
+DigitalIn n4(D5);
+DigitalOut s1(PB_13);
+DigitalOut s2(PB_14);
+DigitalOut s3(PB_15);
+DigitalOut s4(PB_1);
+DigitalOut s5(D10);
+DigitalOut s6(D11);
+DigitalOut s7(D12);
+DigitalOut s8(D13);
+DigitalIn boton(BUTTON1);
+
+void escribir()
+{
+    s1=n1;
+    s2=n2;
+    s3=n3;
+    s4=n4;
+}
+int main() {
+    while (boton==1){}
+    escribir();
+    wait_ms(1000);
+    while(1)
+    {
+        if(boton==0)
+        {
+            s8=s7;
+            s7=s6;
+            s6=s5;
+            s5=s4;
+            s4=s3;
+            s3=s2;
+            s2=s1;
+            s1=n1;
+            wait_ms(200);
+        }
+    } 
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+#include "mbed.h"
+
+DigitalOut a(PC_3);
+DigitalOut b(PC_0);
+DigitalOut c(PC_1);
+DigitalOut d(PB_0);
+DigitalOut e(PA_4);
+DigitalOut f(PA_1);
+DigitalOut g(PA_0);
+DigitalOut n(D5);
+DigitalOut p1(PA_13);
+DigitalOut p2(PA_14);
+DigitalIn n1(D2);
+DigitalIn n2(D3);
+DigitalIn n3(D4);
+DigitalIn n4(D5);
+DigitalIn n5(D6);
+DigitalIn n6(D7);
+
+int x,y,a1,a2,a3,a4,a5,a6,nt1,nt2,ntt;
+
+void numero(int gg)
+{
+    switch(gg) {
+        case(0): {
+            a=b=c=d=e=f=1;
+            g=0;
+            break;
+        }
+        case(1): {
+            b=c=1;
+            a=d=e=g=f=0;
+            break;
+        }
+        case(2): {
+            a=b=g=e=d=1;
+            c=f=0;
+            break;
+        }
+        case(3): {
+            a=b=c=d=g=1;
+            e=f=0;
+            break;
+        }
+        case(4): {
+            b=c=f=g=1;
+            a=d=e=0;
+            break;
+        }
+        case(5): {
+            a=f=g=c=d=1;
+            b=e=0;
+            break;
+        }
+        case(6): {
+            a=c=d=e=f=g=1;
+            b=0;
+            break;
+        }
+        case(7): {
+            a=b=c=1;
+            d=e=g=f=0;
+            break;
+        }
+        case(8): {
+            a=b=c=d=e=f=g=1;
+            break;
+        }
+        case(9): {
+            a=b=c=d=f=g=1;
+            e=0;
+            break;
+        }
+    }
+    n=0;
+}
+void leer1()
+{
+    if(n1==1)
+    {
+        a1=1;
+    }
+    else
+    {
+        a1=0;
+    }
+    if(n2==1)
+    {
+        a2=2;
+    }
+    else
+    {
+        a2=0;
+    }
+    if(n3==1)
+    {
+        a3=4;
+    }
+    else
+    {
+        a3=0;
+    }
+    nt1=a1+a2+a3;
+}
+void leer2()
+{
+    if(n4==1)
+    {
+        a4=1;
+    }
+    else
+    {
+        a4=0;
+    }
+    if(n5==1)
+    {
+        a5=2;
+    }
+    else
+    {
+        a5=0;
+    }
+    if(n6==1)
+    {
+        a6=4;
+    }
+    else
+    {
+        a6=0;
+    }
+    nt2=a4+a5+a6;
+}
+int main()
+{
+    x=y=0;
+    while (1) {
+        numero(x);
+        wait_ms(8);
+        p1=1;
+        p2=0;
+        numero(y);
+        wait_ms(8);
+        p1=0;
+        p2=1;
+        leer1();
+        leer2();
+        ntt=nt1+nt2;
+        y=ntt/10;
+        x=ntt-(y*10);
+    }
+}
